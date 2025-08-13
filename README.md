@@ -49,6 +49,26 @@ Existem dois scripts principais:
 * **`filtering.py`** — Para os anos **anteriores a 2018**, quando os dados vinham **um arquivo por estado**.
 * **`filtering_2018up.py`** — Para **2018 em diante**, quando a organização mudou: agora os arquivos são separados por **regiões** (ex.: Nordeste), com uma coluna adicional indicando o estado.
 
+## Estrutura Resultante
+
+Após a filtragem, os dados terão a seguinte organização:
+
+```bash
+$ tree filtrados
+filtrados
+├── 2008
+│   ├── AC
+│   │   └── chunk_0.parquet.zstd
+...
+│   ├── BA
+│   │   ├── chunk_0.parquet.zstd
+│   │   ├── chunk_1.parquet.zstd
+│   │   ├── chunk_2.parquet.zstd
+...
+```
+
+Os chunks podem ser lidos e filtrados utilizando `pyarrow`. Consulte [`load_dataset_sample.py`](./load_dataset_sample.py) para um exemplo que possibilita o carregamento apenas de CPFs predefinidos.
+
 ## Observações
 
 * O código foi escrito **para meu uso pessoal** e **não foi originalmente planejado para ser público**.
